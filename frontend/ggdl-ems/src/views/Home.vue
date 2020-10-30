@@ -6,6 +6,8 @@
 </template>
 
 <script>
+
+import request from '@/utils/request'
 // @ is an alias to /src
 import HelloWorld from "@/components/HelloWorld.vue";
 
@@ -13,6 +15,11 @@ export default {
   name: "Home",
   components: {
     HelloWorld
+  },
+  created() {
+    console.log(request)
   }
+
+
 };
 </script>
