@@ -6,8 +6,7 @@
 </template>
 
 <script>
-
-import request from '@/utils/request'
+import testApi from "@/api/test";
 // @ is an alias to /src
 import HelloWorld from "@/components/HelloWorld.vue";
 
@@ -17,9 +16,20 @@ export default {
     HelloWorld
   },
   created() {
-    console.log(request)
+    this.fetchData();
+    console.log(testApi);
+  },
+  methods: {
+    fetchData() {
+      testApi
+        .getDataList()
+        .then(response => {
+          console.log("get3", response.data);
+        })
+        .catch(error => {
+          console.log(error.message);
+        });
+    }
   }
-
-
 };
 </script>
