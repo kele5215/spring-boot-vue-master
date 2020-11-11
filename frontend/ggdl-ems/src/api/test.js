@@ -60,11 +60,9 @@ request({
 // 测试3 导出默认对象
 export default {
   getDataList() {
-    const req = request({
+    return request({
       url: BASE_URL + "/db.json",
       method: "get"
     });
-
-    return req;
   }
 };
