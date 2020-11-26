@@ -4,6 +4,10 @@ module.export = {
     host: "localhost",
     https: false, //是否开启https
     open: true //配置自动启动浏览器
+
+    proxy:{
+
+    }
   },
 
   lintOnSave: true, //是否开启Eslint（保存时检查）

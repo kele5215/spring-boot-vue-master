@@ -5,6 +5,7 @@ let express = require("express");
 let app = express();
 
 // 作用是对post请求的请求体进行解析
+// https://www.cnblogs.com/chyingp/p/nodejs-learning-express-body-parser.html
 const bodyParser = require("body-parser");
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -25,10 +26,6 @@ for (let i = 0; i < args.length; i++) {
   }
 }
 
-//user数据
-let userRoutes = require("./api/user");
-app.use("/users", userRoutes);
-
 // 允许跨域
 app.all("*", function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
@@ -42,7 +39,14 @@ app.all("*", function(req, res, next) {
   next();
 });
 
+//user数据
+let userRoutes = require("./api/user");
+app.use("/users", userRoutes);
+
 // 监听端口 3000
-app.listen("3000", () => {
-  console.log("监听端口 3000");
+let server = app.listen(3000, function() {
+  let host = server.address().address;
+  let port = server.address().port;
+
+  console.log("Example app listening at http://%s:%s", host, port);
 });

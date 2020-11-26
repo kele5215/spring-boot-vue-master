@@ -26,9 +26,10 @@ let userInfo = Mock.mock({
   ]
 });
 
+// https://blog.csdn.net/xw505501936/article/details/88396183
 // 获取用户列表数据
 router.get("/", function(req, res) {
-  // req.headers.pagesize 此处必须为小写 原因没有找到
+  // req.headers.pageSize 此处必须为小写 原因没有找到
   let pageSize = req.headers && req.headers.pagesize;
   let current = req.headers && req.headers.current;
 
@@ -49,22 +50,59 @@ router.get("/", function(req, res) {
 // eg: 127.0.0.1:3000/users/参数
 router.get("/:id", function(req, res) {
   let id = req.params.id;
-  let userByIdData = {
+  let userDataById = {
     data: {}
   };
 
   userInfo.data.map(item => {
     console.log(item.id);
-    if (item.id == id) {
-      userByIdData.data = item;
+    if (item.id === id) {
+      userDataById.data = item;
     }
   });
 
-  res.status(200).send(JSON.stringify(userByIdData, null, 2));
+  res.status(200).json(userDataById);
 });
 
+// 新增一条数据post
 router.post("/", function(req, res) {
-  res.send("POST handler for /dogs route.");
+  let user = req.body;
+  user.id = Mock.mock("@id");
+  userInfo.data.push(user);
+
+  res.status(200).json(user);
+});
+
+// 修改一条数据put
+router.put("/:id", function(req, res) {
+  let id = req.params.id;
+  let selIndex = 0;
+
+  userInfo.data.map((item, index) => {
+    if (item.id === id) {
+      selIndex = index;
+      userInfo.data[index].description = "通过put方式 修改了name属性";
+    }
+  });
+
+  res.status(200).send(JSON.stringify(userInfo.data[selIndex], null, 2));
+});
+
+// 删除一条数据del
+router.delete("/:id", function(req, res) {
+  let id = req.params.id;
+
+  console.log("userInfo 删除前的长度为：%d", userInfo.data.length);
+
+  userInfo.data.map((item, index) => {
+    if (item.id === id) {
+      userInfo.data.splice(index, 1);
+    }
+  });
+
+  console.log("userInfo 删除后的长度为：%d", userInfo.data.length);
+
+  res.status(200).json({ id: id });
 });
 
 module.exports = router;
