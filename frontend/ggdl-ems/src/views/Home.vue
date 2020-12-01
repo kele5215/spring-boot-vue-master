@@ -18,6 +18,7 @@ export default {
   created() {
     this.fetchData();
     console.log(testApi);
+    console.log(process.env.VUE_APP_BASE_API);
   },
   methods: {
     fetchData() {

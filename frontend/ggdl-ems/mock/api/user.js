@@ -29,9 +29,17 @@ let userInfo = Mock.mock({
 // https://blog.csdn.net/xw505501936/article/details/88396183
 // 获取用户列表数据
 router.get("/", function(req, res) {
+  let pageSize = 5;
+  let current = 1;
+
   // req.headers.pageSize 此处必须为小写 原因没有找到
-  let pageSize = req.headers && req.headers.pagesize;
-  let current = req.headers && req.headers.current;
+  if (req.headers.pagesize != null) {
+    pageSize = req.headers && req.headers.pagesize;
+  }
+
+  if (req.headers.pagesize != null) {
+    current = req.headers && req.headers.current;
+  }
 
   res.header("total", userInfo.data.length);
   res
@@ -61,7 +69,7 @@ router.get("/:id", function(req, res) {
     }
   });
 
-  res.status(200).json(userDataById);
+  res.status(200).send(JSON.stringify(userDataById, null, 2));
 });
 
 // 新增一条数据post
