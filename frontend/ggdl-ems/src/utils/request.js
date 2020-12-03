@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from 'axios'
 
 // axios
 //   .get("db.json")
@@ -21,6 +21,6 @@ const request = axios.create({
   // 根目录下的 .env.development 与 .env.production 中配置 VUE_APP_BASE_API
   baseURL: process.env.VUE_APP_BASE_API, // "/dev-api"
   timeout: 5000 // 请求超时
-});
+})
 
-export default request;
+export default request
