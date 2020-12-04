@@ -1,7 +1,7 @@
 <template>
   <div class="login">
     <el-card>
-      <h2>Login</h2>
+      <h2>欢迎来到格格小铺-登录</h2>
       <el-form
         class="login-form"
         :model="model"
@@ -32,7 +32,7 @@
             native-type="submit"
             block
           >
-            Login
+            登录
           </el-button>
         </el-form-item>
         <a class="forgot-password" href="https://oxfordinformatics.com/">
@@ -122,7 +122,7 @@ export default {
   margin-top: 40px;
 }
 .login-form {
-  width: 290px;
+  width: 430px;
 }
 .forgot-password {
   margin-top: 10px;
@@ -178,7 +178,7 @@ a {
   }
 }
 .login .el-card {
-  width: 340px;
+  width: 480px;
   display: flex;
   justify-content: center;
 }
