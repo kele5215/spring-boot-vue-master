@@ -1,9 +1,13 @@
 <template>
   <div class="login">
     <el-card>
+<<<<<<< HEAD
       <h2>管理系统-登录</h2>
       <!-- .native 表示对一个组件绑定系统原生事件
            .prevent 表示提交以后不刷新页面 -->
+=======
+      <h2>欢迎来到格格小铺-登录</h2>
+>>>>>>> e42342a1ba64ef0de4cc7b53b9dcf1d31c79e37a
       <el-form
         class="login-form"
         :model="model"
@@ -11,17 +15,25 @@
         ref="form"
         @submit.native.prevent="login"
       >
+<<<<<<< HEAD
         <!-- 表单域 model 字段，在使用 validate、resetFields 方法的情况下，该属性是必填的 -->
         <el-form-item prop="username">
           <el-input
             v-model="model.username"
             placeholder="用户名"
+=======
+        <el-form-item prop="username">
+          <el-input
+            v-model="model.username"
+            placeholder="Username"
+>>>>>>> e42342a1ba64ef0de4cc7b53b9dcf1d31c79e37a
             prefix-icon="fas fa-user"
           ></el-input>
         </el-form-item>
         <el-form-item prop="password">
           <el-input
             v-model="model.password"
+<<<<<<< HEAD
             placeholder="输入密码"
             type="password"
             prefix-icon="fas fa-lock"
@@ -35,6 +47,11 @@
             type="password"
             prefix-icon="fas fa-lock"
             auto-complete="off"
+=======
+            placeholder="Password"
+            type="password"
+            prefix-icon="fas fa-lock"
+>>>>>>> e42342a1ba64ef0de4cc7b53b9dcf1d31c79e37a
           ></el-input>
         </el-form-item>
         <el-form-item>
@@ -45,7 +62,11 @@
             native-type="submit"
             block
           >
+<<<<<<< HEAD
             登 录
+=======
+            登录
+>>>>>>> e42342a1ba64ef0de4cc7b53b9dcf1d31c79e37a
           </el-button>
         </el-form-item>
         <a class="forgot-password" href="https://oxfordinformatics.com/">
@@ -57,6 +78,7 @@
 </template>
 
 <script>
+<<<<<<< HEAD
 // @代表的是 /src
 import { isValidUserNm, isValidPwd } from '@/utils/validate'
 import { loginApi } from '@/api/login'
@@ -161,17 +183,56 @@ export default {
         ],
         rePassword: [
           { required: true, validator: validatePass2, trigger: 'blur' }
+=======
+export default {
+  name: 'login',
+  data() {
+    return {
+      validCredentials: {
+        username: 'lightscope',
+        password: 'lightscope'
+      },
+      model: {
+        username: '',
+        password: ''
+      },
+      loading: false,
+      rules: {
+        username: [
+          {
+            required: true,
+            message: 'Username is required',
+            trigger: 'blur'
+          },
+          {
+            min: 4,
+            message: 'Username length should be at least 5 characters',
+            trigger: 'blur'
+          }
+        ],
+        password: [
+          { required: true, message: 'Password is required', trigger: 'blur' },
+          {
+            min: 5,
+            message: 'Password length should be at least 5 characters',
+            trigger: 'blur'
+          }
+>>>>>>> e42342a1ba64ef0de4cc7b53b9dcf1d31c79e37a
         ]
       }
     }
   },
   methods: {
+<<<<<<< HEAD
     // 模拟登录
+=======
+>>>>>>> e42342a1ba64ef0de4cc7b53b9dcf1d31c79e37a
     simulateLogin() {
       return new Promise(resolve => {
         setTimeout(resolve, 800)
       })
     },
+<<<<<<< HEAD
     // async函数返回的是一个Promise对象，
     // 如果在函数中return一个直接量，
     // async会把这个直接量通过Promise.resolve()封装成一个Promise对象
@@ -180,6 +241,8 @@ export default {
     // async 函数执行时，如果遇到 await 就会先暂停执行 ，
     // 等到触发的异步操作完成后，恢复 async 函数的执行并返回解析值
     // https://www.runoob.com/w3cnote/es6-async.html
+=======
+>>>>>>> e42342a1ba64ef0de4cc7b53b9dcf1d31c79e37a
     async login() {
       let valid = await this.$refs.form.validate()
       if (!valid) {
@@ -187,6 +250,7 @@ export default {
       }
       this.loading = true
       await this.simulateLogin()
+<<<<<<< HEAD
       loginApi(this.model)
         .then(res => {
           console.log(res)
@@ -203,6 +267,17 @@ export default {
           console.log(err)
         })
       this.loading = false
+=======
+      this.loading = false
+      if (
+        this.model.username === this.validCredentials.username &&
+        this.model.password === this.validCredentials.password
+      ) {
+        this.$message.success('Login successfull')
+      } else {
+        this.$message.error('Username or password is invalid')
+      }
+>>>>>>> e42342a1ba64ef0de4cc7b53b9dcf1d31c79e37a
     }
   }
 }
@@ -246,6 +321,10 @@ $teal: rgb(0, 124, 137);
 }
 .login .el-input__prefix {
   background: rgb(238, 237, 234);
+<<<<<<< HEAD
+=======
+  left: 0;
+>>>>>>> e42342a1ba64ef0de4cc7b53b9dcf1d31c79e37a
   height: calc(100% - 2px);
   left: 1px;
   top: 1px;
@@ -262,6 +341,10 @@ $teal: rgb(0, 124, 137);
   padding-bottom: 30px;
 }
 h2 {
+<<<<<<< HEAD
+=======
+  font-family: 'Open Sans';
+>>>>>>> e42342a1ba64ef0de4cc7b53b9dcf1d31c79e37a
   letter-spacing: 1px;
   font-family: Roboto, sans-serif;
   padding-bottom: 20px;
