@@ -166,7 +166,6 @@ export default {
     }
   },
   methods: {
-    // 模拟登录
     simulateLogin() {
       return new Promise(resolve => {
         setTimeout(resolve, 800)
@@ -202,6 +201,15 @@ export default {
           console.log(err)
         })
       this.loading = false
+      if (
+        this.model.username === this.validCredentials.username &&
+        this.model.password === this.validCredentials.password
+      ) {
+        this.$message.success('Login successfull')
+      } else {
+        this.$message.error('Username or password is invalid')
+      }
+>>>>>>> e42342a1ba64ef0de4cc7b53b9dcf1d31c79e37a
     }
   }
 }
@@ -245,6 +253,7 @@ $teal: rgb(0, 124, 137);
 }
 .login .el-input__prefix {
   background: rgb(238, 237, 234);
+  left: 0;
   height: calc(100% - 2px);
   left: 1px;
   top: 1px;
@@ -261,6 +270,7 @@ $teal: rgb(0, 124, 137);
   padding-bottom: 30px;
 }
 h2 {
+  font-family: 'Open Sans';
   letter-spacing: 1px;
   font-family: Roboto, sans-serif;
   padding-bottom: 20px;

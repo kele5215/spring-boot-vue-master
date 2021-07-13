@@ -1,4 +1,18 @@
+<<<<<<< HEAD
 /****   request.js   ****/
+=======
+import axios from 'axios'
+
+// axios
+//   .get("db.json")
+//   .then(response => {
+//     const data = response.data;
+//     console.log(data);
+//   })
+//   .catch(error => {
+//     console.log(error.message());
+//   });
+>>>>>>> e42342a1ba64ef0de4cc7b53b9dcf1d31c79e37a
 
 // blog.csdn.net/weixin_43216105/article/details/98877960
 // 导入axios
@@ -19,6 +33,7 @@ const request = axios.create({
   // baseURL: '/',
   // 根目录下的 .env.development 与 .env.production 中配置 VUE_APP_BASE_API
   baseURL: process.env.VUE_APP_BASE_API, // "/dev-api"
+<<<<<<< HEAD
   timeout: 3 * 1000 // 请求超时
 })
 
@@ -124,4 +139,9 @@ request.interceptors.response.use(
 )
 
 // 4.导出文件
+=======
+  timeout: 5000 // 请求超时
+})
+
+>>>>>>> e42342a1ba64ef0de4cc7b53b9dcf1d31c79e37a
 export default request
