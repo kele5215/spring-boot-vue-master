@@ -7,18 +7,20 @@ const http = {
   /**
    * get 请求
    * @param url 接口路由
-   * @param data 接口参数
+   * @param params 接口参数
    * @param auth 是否需要带登录信息
    * @returns request 对应请求对象
    */
-  get(url, data, auth = false) {
+  get(url, params, auth = false) {
     const config = {
       methods: 'get',
-      url: url
+      url: url,
+      data: params
     }
 
     // 接口参数设定
-    if (data) config.params = data
+    //if (data) config.params = data
+    console.log('http data;' + params)
 
     // 是否需要带登录信息判断
     if (auth) {

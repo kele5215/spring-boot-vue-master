@@ -7,7 +7,10 @@ let app = express()
 // 作用是对post请求的请求体进行解析
 // https://www.cnblogs.com/chyingp/p/nodejs-learning-express-body-parser.html
 const bodyParser = require('body-parser')
+
+// 解析 application/json
 app.use(bodyParser.json())
+// 解析 url编码
 app.use(bodyParser.urlencoded({ extended: false }))
 
 // 自定义路径 前缀： '/api'

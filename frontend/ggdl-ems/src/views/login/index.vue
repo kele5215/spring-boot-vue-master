@@ -6,7 +6,7 @@
            .prevent 表示提交以后不刷新页面 -->
       <el-form
         class="login-form"
-        :model="model"
+        :model="loginForm"
         :rules="rules"
         ref="form"
         @submit.native.prevent="login"
@@ -14,14 +14,14 @@
         <!-- 表单域 model 字段，在使用 validate、resetFields 方法的情况下，该属性是必填的 -->
         <el-form-item prop="username">
           <el-input
-            v-model="model.username"
+            v-model="loginForm.username"
             placeholder="用户名"
             prefix-icon="fas fa-user"
           ></el-input>
         </el-form-item>
         <el-form-item prop="password">
           <el-input
-            v-model="model.password"
+            v-model="loginForm.password"
             placeholder="输入密码"
             type="password"
             prefix-icon="fas fa-lock"
@@ -30,7 +30,7 @@
         </el-form-item>
         <el-form-item prop="rePassword">
           <el-input
-            v-model="model.rePassword"
+            v-model="loginForm.rePassword"
             placeholder="确认密码"
             type="password"
             prefix-icon="fas fa-lock"
@@ -95,7 +95,7 @@ export default {
           new Error('密码以字母开头 长度在8~18之间 只能包含字母、数字和下划线')
         )
       } else {
-        if (this.model.rePassword !== '') {
+        if (this.loginForm.rePassword !== '') {
           this.$refs.form.validateField('rePassword')
         }
         callback()
@@ -105,7 +105,7 @@ export default {
     const validatePass2 = (rule, value, callback) => {
       if (value === '') {
         callback(new Error('请输入确认密码'))
-      } else if (value !== this.model.password) {
+      } else if (value !== this.loginForm.password) {
         callback(new Error('两次输入密码不一致！'))
       } else {
         callback()
@@ -121,7 +121,7 @@ export default {
         username: 'kele5215',
         password: 'a123456'
       },
-      model: {
+      loginForm: {
         username: '',
         password: '',
         rePassword: ''
@@ -187,13 +187,12 @@ export default {
       }
       this.loading = true
       await this.simulateLogin()
-      loginApi(this.model)
+      loginApi(this.loginForm)
         .then(res => {
-          console.log(res)
-          if (
-            this.model.username === res.data.username &&
-            this.model.password === res.data.password
-          ) {
+          console.log('res: ' + res)
+          console.log(this.loginForm.username)
+          console.log(res.data.username)
+          if (this.loginForm.username === res.data.data.username) {
             this.$message.success('登录成功')
           } else {
             this.$message.error('账号或密码错误')
